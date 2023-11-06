@@ -1,6 +1,6 @@
-package com.example.databaseproject.data;
+package com.example.databaseproject.entities.educationalSystem;
 
-import com.example.databaseproject.data.course.Course;
+import com.example.databaseproject.entities.course.Course;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +13,12 @@ import java.util.List;
 @Setter
 public class EducationalSystem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
+    @Column()
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "educationalSystem")
     private List<Course> courses = new ArrayList<>();
+
 }

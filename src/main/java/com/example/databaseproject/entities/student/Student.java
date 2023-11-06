@@ -1,6 +1,7 @@
-package com.example.databaseproject.data.student;
+package com.example.databaseproject.entities.student;
 
-import com.example.databaseproject.data.course.Course;
+import com.example.databaseproject.entities.course.Course;
+import com.example.databaseproject.entities.department.Department;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,14 +14,15 @@ import java.util.List;
 @Setter
 public class Student {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column()
     private Long id;
 
+    @Column()
     private String name;
 
-    private String surname;
-
-    private Long studentId;
+    @Column()
+    private String lastName;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
@@ -31,4 +33,11 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     private List<Course> courses = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @Column
+    private Integer numberOfCredits;
 }
