@@ -1,12 +1,11 @@
 package com.example.databaseproject.entities.department;
 
+import com.example.databaseproject.entities.course.Course;
 import com.example.databaseproject.entities.professor.Professor;
 import com.example.databaseproject.entities.student.Student;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-
 import java.util.List;
 
 @Entity
@@ -27,4 +26,7 @@ public class Department {
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Professor> professors;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Course> courses;
 }

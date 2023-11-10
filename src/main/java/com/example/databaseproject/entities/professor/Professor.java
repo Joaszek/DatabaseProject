@@ -22,6 +22,9 @@ public class Professor {
     private List<Course> courses = new ArrayList<>();
 
     @Column
+    private String title;
+
+    @Column
     private String firstName;
 
     @Column

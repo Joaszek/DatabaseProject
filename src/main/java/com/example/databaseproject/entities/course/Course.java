@@ -1,5 +1,6 @@
 package com.example.databaseproject.entities.course;
 
+import com.example.databaseproject.entities.department.Department;
 import com.example.databaseproject.entities.professor.Professor;
 import com.example.databaseproject.entities.educationalSystem.EducationalSystem;
 import com.example.databaseproject.entities.student.Student;
@@ -20,7 +21,6 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column()
     private Long id;
-
 
     @ManyToMany(mappedBy = "courses")
     private List<Student> students = new ArrayList<>();
@@ -51,4 +51,11 @@ public class Course {
 
     @Column
     private String classroom;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    @Column
+    private String name;
 }
